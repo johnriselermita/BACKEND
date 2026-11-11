@@ -5,7 +5,22 @@ export const fetchAllStudents = async () => {
     return rows;
 };
 
-export const insertStudent = async (student) => {
+export const findStudentByNameSrcodANDProgram = async () => {
+    const [rows] = await pool.query('SELECT * FROM student WHERE name = ? AND srcode = ? AND program = ?',
+        [student.name, student.srcode, student.program]
+    );
+    return rows;
+};
+
+export const findStudentById = async (id) => {
+    const [rows] = await pool.query("SELECT * FROM student WHERE id = ?",
+        [id]
+    );
+    return rows;
+};
+
+//insert
+export const insert = async (student) => {
     const [result] = await pool.query(
         'INSERT INTO student (name, srcode, program) VALUES (?, ?, ?)',
         [student.name, student.srcode, student.program]
@@ -13,6 +28,7 @@ export const insertStudent = async (student) => {
     return result.insertId;
 };
 
+//update
 export const update = async (student) => {
     const [result] = await pool.query(
         'UPDATE student SET name = ?, srcode = ?, program = ? WHERE id = ?',
@@ -22,7 +38,7 @@ export const update = async (student) => {
 };
 
 //delete 
-export const remove = async (id) => {
+export const deleteStudent = async (id) => {
     const[result] = await pool.query (
         "DELETE FROM student WHERE id= ?", [id]
     );
