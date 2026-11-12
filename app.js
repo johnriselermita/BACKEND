@@ -1,6 +1,7 @@
 import express from 'express';
 import bookRoutes from './routes/bookRoutes.js';
 import studentRoutes from './routes/studentRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 
 const app = express();
@@ -19,6 +20,7 @@ app.use((error, req, res, next) => {
 
 app.use('/student', studentRoutes);
 app.use('/book', bookRoutes);
+app.use('/user', userRoutes);
 
 try {
     const PORT = 3000;
