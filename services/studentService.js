@@ -12,7 +12,7 @@ const doesStudentExist = async (student) => {
     if(Object.hasOwn(student, "id")) {
         existing = await studentModel.findStudentById(student.id);
     }else {
-        existing = await studentModel.findStudentByNameANDSrcode(student);
+        existing = await studentModel.findStudentByNameSrcodeAndProgram(student);
     }
      if(existing.length > 0) {
         return true;
